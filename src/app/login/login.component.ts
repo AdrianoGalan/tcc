@@ -1,6 +1,7 @@
 import { Usuario } from './../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   formulario!: FormGroup;
-  usuario!: Usuario;
+  usuario: Usuario = new Usuario();;
  
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService) { 
 
-    this.usuario = new Usuario();
     
   }
 
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
 
     this.usuario.senha = this.formulario.value['senha'];
     this.usuario.login = this.formulario.value['usuario']
-    console.log(this.usuario)
+    this.authService.fazerLogin(this.usuario);
+    
 
   }
 
