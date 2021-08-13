@@ -13,19 +13,23 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService){
 
-    
+
 
   }
   ngOnInit(){
 
     this.authService.mostrarMenuEmitter.subscribe(
-      
-      mostrar => this.mostrarMenu = mostrar                   
-    
+
+      mostrar => this.mostrarMenu = mostrar
+
     );
 
-    this.mostrarMenu = this.authService.usuarioAutenticado
   }
 
-  
+  onLogoff(){
+
+    this.authService.sair()
+
+  }
+
 }

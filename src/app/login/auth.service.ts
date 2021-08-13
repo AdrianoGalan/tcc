@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  usuarioAutenticado: boolean = false;
+  private usuarioAutenticado: boolean = false;
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private router: Router) {
@@ -26,5 +26,15 @@ export class AuthService {
     this.usuarioAutenticado = false;
     this.mostrarMenuEmitter.emit(false);
     }
+  }
+
+  estaAutenticado(){
+    return this.usuarioAutenticado
+  }
+
+  sair(){
+    this.usuarioAutenticado = false;
+    this.mostrarMenuEmitter.emit(false);
+    this.router.navigate(['login']);
   }
 }
