@@ -1,3 +1,5 @@
+import { FuncionarioService } from './funcionario.service';
+import { Funcionario } from './../model/funcionario';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FuncionarioComponent implements OnInit {
 
-  constructor() { }
+   funcionarios: Funcionario[] = []
+
+  constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
+
+    this.funcionarios = this.funcionarioService.getFuncionarios();
+  }
+
+  onEdit(f: Funcionario){
+    
   }
 
 }

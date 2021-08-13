@@ -4,6 +4,6 @@ export class Funcionario {
 
   ra!: number;
   pessoa!: Pessoa;
-  dataAdm!: Date;
+  dataAdm!: string;
   funcao!: string;
 }

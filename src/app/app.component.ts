@@ -9,7 +9,8 @@ import { AuthService } from './login/auth.service';
 export class AppComponent implements OnInit {
   title = 'tcc';
 
-  mostrarMenu: boolean = false;
+  //teste mudar para false
+  mostrarMenu: boolean = true;
 
   constructor(private authService: AuthService){
 

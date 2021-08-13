@@ -1,1 +1,35 @@
-<p>funcionario works!</p>
+<div class="row imac g-0">
+    <div class="col-12 col-md-4">
+        <table class="table table-hover">
+
+
+            <thead>
+                <h3>Funcionarios</h3>
+                <tr>
+                    <th>Ra</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let f of funcionarios" [routerLink]="'detalhe/' + [f.ra]">
+                    <td>{{f.ra}}</td>
+                    <td>{{f.pessoa.nome}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #loading>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div class="col-12 col-md-8" style="padding: 10px;">
+
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

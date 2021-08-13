@@ -12,8 +12,8 @@ const routes: Routes = [
   canActivate: [AuthGuard] },
   { path: 'os', loadChildren: () => import('./os/os.module').then(m => m.OsModule),
   canActivate: [AuthGuard] },
-  { path: 'funcionario', loadChildren: () => import('./funcionario/funcionario.module').then(m => m.FuncionarioModule),
-  canActivate: [AuthGuard] }
+  { path: 'funcionario', loadChildren: () => import('./funcionario/funcionario.module').then(m => m.FuncionarioModule) },
+  { path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) }
 ];
 
 @NgModule({
