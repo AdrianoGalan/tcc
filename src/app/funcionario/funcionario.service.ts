@@ -20,7 +20,7 @@ export class FuncionarioService {
 
       let p: Pessoa = new Pessoa();
       p.id = index + 7;
-      p.nome = "pessoa " + index;
+      p.nome = "nome da pessoa" + index;
       
       let f: Funcionario = new Funcionario();
       f.dataAdm = index + " /4/2021";
@@ -36,6 +36,22 @@ export class FuncionarioService {
   getFuncionarios(){
    
     return this.funcionarios
+  }
+
+  getFuncionario(ra: number){
+
+    for (let index = 0; index < this.funcionarios.length; index++) {
+
+    if( this.funcionarios[index].ra == ra){
+
+      return this.funcionarios[index];
+    }
+      
+    }
+
+    return null;
+ 
+
   }
 
 

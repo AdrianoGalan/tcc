@@ -7,7 +7,8 @@ import { FuncionarioComponent } from './funcionario.component';
 const routes: Routes = [
   {
     path: '', component: FuncionarioComponent, children: [
-      { path: 'cadastro/:id', component: FuncionarioCadastroComponent },
+      { path: 'cadastrar', component: FuncionarioCadastroComponent },
+      { path: 'atualizar/:id', component: FuncionarioCadastroComponent },
       { path: 'detalhe/:id', component: FuncionarioDetalheComponent }
     ]
   }
