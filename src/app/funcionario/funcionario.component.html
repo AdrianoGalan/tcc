@@ -1,37 +1,44 @@
 <div class="row imac g-0">
     <div class="col-12 col-md-4">
-        <table class="table table-hover">
 
-
-            <thead>
-
+        <div class="row imac g-0">
+            <div class="col-12 col-md-6">
                 <h3>Funcionarios</h3>
-
+            </div>
+            <div class="col-12 col-md-6">
+                <button style="margin-top: 10px;" type="button" class="btn btn-outline-primary" [routerLink]="'cadastrar'">Novo
+                    <i class="bi bi-person-plus-fill"></i></button>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th>Ra</th>
+                    <th>Matricula</th>
                     <th>Nome</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let f of funcionarios" [routerLink]="'detalhe/' + [f.ra]">
-                    <td>{{f.ra}}</td>
+                <tr *ngFor="let f of funcionarios" [routerLink]="'detalhe/' + [f.matricula]">
+                    <td>{{f.matricula}}</td>
                     <td>{{f.pessoa.nome}}</td>
                 </tr>
             </tbody>
         </table>
 
-        <ng-template #loading>
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </ng-template>
+
     </div>
-    <div class="col-12 col-md-8" style="padding: 10px;">
+    <div class="col-12 col-md-8">
 
         <router-outlet></router-outlet>
 
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>

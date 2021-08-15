@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'tcc';
 
   //teste mudar para false
-  mostrarMenu: boolean = true;
+  mostrarMenu: boolean = false;
 
   constructor(private authService: AuthService){
 

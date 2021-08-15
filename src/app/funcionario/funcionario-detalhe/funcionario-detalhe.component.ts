@@ -1,9 +1,8 @@
 import { FuncionarioService } from './../funcionario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from './../../model/funcionario';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-funcionario-detalhe',
@@ -12,21 +11,28 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class FuncionarioDetalheComponent implements OnInit, OnDestroy {
 
-  funcionario: any | undefined; 
+  funcionario!: Funcionario; 
   inscricao: Subscription;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private funcionarioService: FuncionarioService
     ) {
       this.inscricao = this.route.params.subscribe(
         (params: any) => {
-          let ra = params['id'];
+          let matricula = params['id'];
 
-          this.funcionario = this.funcionarioService.getFuncionario(ra);
+          this.funcionario = this.funcionarioService.getFuncionario(matricula);
         }
       );
      }
+
+  atualizar(){
+
+    this.router.navigate([`funcionario/atualizar/${this.funcionario.matricula}`])
+
+  }
 
   ngOnInit(): void {
   }
@@ -36,5 +42,6 @@ export class FuncionarioDetalheComponent implements OnInit, OnDestroy {
     this.inscricao.unsubscribe();
 
   }
+
 
 }

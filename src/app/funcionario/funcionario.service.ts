@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class FuncionarioService {
 
   private funcionarios: Funcionario[] = []
+  private funcao: string[] = ['Eletricista', 'Mecanico', 'Lubrificador', 'Coordenador', 'Supervisor']
 
 
   constructor() {
@@ -23,9 +24,9 @@ export class FuncionarioService {
       p.nome = "nome da pessoa" + index;
       
       let f: Funcionario = new Funcionario();
-      f.dataAdm = index + " /4/2021";
+      f.dataAdm = `2021-08-${index+10}`;
       f.funcao = 'eletricista';
-      f.ra = index;
+      f.matricula = index;
       f.pessoa = p;
       
       this.funcionarios.push(f);
@@ -38,19 +39,36 @@ export class FuncionarioService {
     return this.funcionarios
   }
 
-  getFuncionario(ra: number){
+  getFuncionario(matricula: number){
+
+    let f: Funcionario = new Funcionario
 
     for (let index = 0; index < this.funcionarios.length; index++) {
 
-    if( this.funcionarios[index].ra == ra){
+    if( this.funcionarios[index].matricula == matricula){
 
       return this.funcionarios[index];
     }
       
     }
 
-    return null;
+    return f ;
  
+
+  }
+
+  getFuncao(){
+    return this.funcao;
+  }
+
+  atualizarFuncionario(f: Funcionario){
+
+
+  }
+
+  novoFuncionario(f: Funcionario){
+
+    this.funcionarios.push(f);
 
   }
 

@@ -1,6 +1,6 @@
 import { Usuario } from './../model/usuario';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
 
   formulario!: FormGroup;
-  usuario: Usuario = new Usuario();;
+  usuario: Usuario = new Usuario();
+  submitted = false;
  
 
   constructor(private formBuilder: FormBuilder,
@@ -22,18 +23,35 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formulario = this.formBuilder.group({
-      usuario:[null],
-      senha:[null]
+      this.formulario = this.formBuilder.group({
+      usuario:[null, Validators.required],
+      senha:[null, Validators.required]
     });
 
   }
 
+  hasError(field: string) {
+
+    
+   return this.formulario.get(field)?.errors
+   
+  }
+
   onSubmit(){
 
-    this.usuario.senha = this.formulario.value['senha'];
-    this.usuario.login = this.formulario.value['usuario']
-    this.authService.fazerLogin(this.usuario);
+    this.submitted = true
+
+    if(this.formulario.valid){
+
+      this.usuario.senha = this.formulario.value['senha'];
+      this.usuario.login = this.formulario.value['usuario']
+      this.authService.fazerLogin(this.usuario);
+
+    }else{
+      console.log("eita")
+    }
+
+    
     
 
   }
