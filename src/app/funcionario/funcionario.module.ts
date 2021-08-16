@@ -6,6 +6,7 @@ import { FuncionarioRoutingModule } from './funcionario-routing.module';
 import { FuncionarioComponent } from './funcionario.component';
 import { FuncionarioCadastroComponent } from './funcionario-cadastro/funcionario-cadastro.component';
 import { FuncionarioDetalheComponent } from './funcionario-detalhe/funcionario-detalhe.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

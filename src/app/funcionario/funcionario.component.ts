@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { FuncionarioService } from './funcionario.service';
 import { Funcionario } from './../model/funcionario';
 import { Component, OnInit } from '@angular/core';
@@ -9,14 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FuncionarioComponent implements OnInit {
 
-   funcionarios: Funcionario[] = []
+  funcionarios$!: Observable<Funcionario[]>;
 
   constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
 
-    this.funcionarios = this.funcionarioService.getFuncionarios();
+    this.onRefresh();
+
   }
+
+
+  onRefresh() {
+    this.funcionarios$ = this.funcionarioService.list().pipe();
+  }
+
 
   onEdit(f: Funcionario){
     

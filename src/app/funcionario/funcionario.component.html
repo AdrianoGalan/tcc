@@ -10,7 +10,7 @@
                     <i class="bi bi-person-plus-fill"></i></button>
             </div>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover" *ngIf="(funcionarios$ | async) as funcionario; else loading">
             <thead>
                 <tr>
                     <th>Matricula</th>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let f of funcionarios" [routerLink]="'detalhe/' + [f.matricula]">
+                <tr *ngFor="let f of funcionario" [routerLink]="'detalhe/' + [f.matricula]">
                     <td>{{f.matricula}}</td>
                     <td>{{f.pessoa.nome}}</td>
                 </tr>

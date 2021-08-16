@@ -33,7 +33,7 @@ export class FuncionarioCadastroComponent implements OnInit {
             this.novo = true;
           }
 
-            this.funcionario = this.funcionarioService.getFuncionario(matricula)
+         //   this.funcionario = this.funcionarioService.getFuncionario(matricula)
           
         }
       );
@@ -42,7 +42,7 @@ export class FuncionarioCadastroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.funcoes = this.funcionarioService.getFuncao();
+   // this.funcoes = this.funcionarioService.getFuncao();
 
     if(this.novo){
 
@@ -82,9 +82,9 @@ export class FuncionarioCadastroComponent implements OnInit {
     console.log(this.funcionario)
 
     if(this.novo){
-      this.funcionarioService.novoFuncionario(this.funcionario);
+     // this.funcionarioService.novoFuncionario(this.funcionario);
     }else{
-      this.funcionarioService.atualizarFuncionario(this.funcionario);
+     // this.funcionarioService.atualizarFuncionario(this.funcionario);
     }
   }
 
