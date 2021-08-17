@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Funcionario } from './../../model/funcionario';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,8 @@ import { Pessoa } from 'src/app/model/pessoa';
 })
 export class FuncionarioCadastroComponent implements OnInit {
 
-  funcionario: Funcionario = new Funcionario; 
+  funcionario$!: Observable<Funcionario>;
+  
   inscricao: Subscription;
   funcoes!: string[];
   formulario!: FormGroup;
@@ -33,7 +34,7 @@ export class FuncionarioCadastroComponent implements OnInit {
             this.novo = true;
           }
 
-         //   this.funcionario = this.funcionarioService.getFuncionario(matricula)
+            this.funcionario$ = this.funcionarioService.getFuncionario(matricula)
           
         }
       );
