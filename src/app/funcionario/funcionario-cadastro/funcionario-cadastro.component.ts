@@ -14,7 +14,7 @@ import { Pessoa } from 'src/app/model/pessoa';
 })
 export class FuncionarioCadastroComponent implements OnInit {
 
-  funcionario$!: Observable<Funcionario>;
+  funcionario!: Funcionario;
 
   inscricao: Subscription;
   funcoes!: string[];
@@ -34,7 +34,13 @@ export class FuncionarioCadastroComponent implements OnInit {
           this.novo = true;
         } else {
 
-          this.funcionario$ = this.funcionarioService.getFuncionario(matricula)
+          this.funcionarioService.getFuncionario(matricula).subscribe(
+            f => {
+
+              this.funcionario = f
+             
+            }
+          );
 
         }
 
@@ -45,14 +51,22 @@ export class FuncionarioCadastroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formulario = this.formBuilder.group({
-      matricula: [null],
-      nome: [null],
-      funcao: [null],
-      dataAdm: [null]
+   
+      this.formulario = this.formBuilder.group({
+        matricula: [null],
+        nome: [null],
+        funcao: [null],
+        dataAdm: [null]
 
-    });
+      });
 
+      console.log(this.formBuilder)
+    
+    
+  }
+
+  povoar(){
+    this.formBuilder.group
   }
 
   onSubmit() {
