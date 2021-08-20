@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Funcionario } from './../model/funcionario';
 import { Injectable } from '@angular/core';
 import { tap, take } from 'rxjs/operators';
@@ -16,6 +16,8 @@ export class FuncionarioService {
 
 
   constructor(private http: HttpClient) {
+
+
     
   }
 
@@ -27,6 +29,12 @@ export class FuncionarioService {
 
     return this.http.get<Funcionario>(`${this.API}/${matricula}`).pipe(take(1))
 
+  }
+
+  atualizaFuncionario(funcionario: Funcionario){
+
+
+    return this.http.post(`${this.API}/atualizar`, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
   }
 
 
