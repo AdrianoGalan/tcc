@@ -6,7 +6,8 @@
                 <h3>Funcionarios</h3>
             </div>
             <div class="col-12 col-md-6">
-                <button style="margin-top: 10px;" type="button" class="btn btn-outline-primary" [routerLink]="'cadastrar'">Novo
+                <button style="margin-top: 10px;" type="button" class="btn btn-outline-primary"
+                    [routerLink]="'cadastrar'">Novo
                     <i class="bi bi-person-plus-fill"></i></button>
             </div>
         </div>
@@ -36,9 +37,7 @@
 </div>
 
 <ng-template #loading>
-    <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
 </ng-template>
