@@ -1,3 +1,4 @@
+import { Funcao } from './funcao';
 import { Pessoa } from './pessoa';
 
 export class Funcionario {
@@ -5,5 +6,5 @@ export class Funcionario {
   matricula!: number;
   pessoa!: Pessoa;
   dataAdm!: string;
-  funcao!: string;
+  funcao!: Funcao;
 }

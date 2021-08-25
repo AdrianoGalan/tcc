@@ -34,7 +34,7 @@ export class FuncionarioService {
   atualizaFuncionario(funcionario: Funcionario){
 
 
-    return this.http.post(`${this.API}/atualizar`, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+    return this.http.post(this.API, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
   }
 
 
