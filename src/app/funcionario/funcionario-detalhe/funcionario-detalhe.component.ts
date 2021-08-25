@@ -4,6 +4,7 @@ import { Funcionario } from './../../model/funcionario';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Funcao } from 'src/app/model/funcao';
 
 @Component({
   selector: 'app-funcionario-detalhe',
@@ -13,6 +14,7 @@ import { map } from 'rxjs/operators';
 export class FuncionarioDetalheComponent implements OnInit, OnDestroy {
 
   funcionario$!: Observable<Funcionario>;
+  funcao$!: Observable<Funcao>;
   inscricao: Subscription;
   private matricula: number = -1
 

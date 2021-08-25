@@ -1,9 +1,12 @@
-import { Subscription } from 'rxjs';
+import { Pessoa } from './../../model/pessoa';
+import { catchError, take } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
 import { Funcionario } from './../../model/funcionario';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FuncionarioService } from '../funcionario.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Funcao } from 'src/app/model/funcao';
 @Component({
   selector: 'app-funcionario-cadastro',
   templateUrl: './funcionario-cadastro.component.html',
@@ -14,13 +17,14 @@ export class FuncionarioCadastroComponent implements OnInit {
   funcionario!: Funcionario;
 
   inscricao: Subscription;
-  funcoes!: string[];
+  funcao$!: Observable<Funcao[]>;
   formulario!: FormGroup;
   novo: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private funcionarioService: FuncionarioService
   ) {
     this.inscricao = this.route.params.subscribe(
@@ -52,6 +56,10 @@ export class FuncionarioCadastroComponent implements OnInit {
   ngOnInit(): void {
 
 
+    this.funcao$ = this.funcionarioService.listFuncao().pipe();
+
+    console.log(this.funcao$)
+
     this.formulario = this.formBuilder.group({
       matricula: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -77,45 +85,69 @@ export class FuncionarioCadastroComponent implements OnInit {
 
   onSubmit() {
 
-    this.funcionario.funcao = this.formulario.value['funcao'];
-    this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
-    if (this.novo) {
-      
-    }else{
+    if (this.formulario.valid) {
+      if (this.novo) {
 
-      this.funcionario.pessoa.nome = this.formulario.value['nome'];
-      this.funcionarioService.atualizaFuncionario(this.funcionario).subscribe(
+        this.funcionario = new Funcionario();
+        let pessoa = new Pessoa();
+        this.funcionario.pessoa = pessoa;
 
-        success => {
-  
-          console.log('foi')
-        },
-        erro =>{
+        this.funcionario.pessoa.nome = this.formulario.value['nome'];
+        this.funcionario.funcao = this.formulario.value['funcao'];
+        this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
-          console.log(erro)
-  
-        
-  
-        }
-  
-      );
-  
 
+        console.log(this.funcionario)
+
+        this.funcionarioService.atualizaFuncionario(this.funcionario).subscribe(
+
+          success => {
+
+            this.formulario.reset
+
+          },
+          erro => {
+
+            console.log(erro)
+
+
+
+          }
+
+        );
+
+      } else {
+
+        console.log("this.formulario.value['funcao']")
+        // this.funcionario.pessoa.nome = this.formulario.value['nome'];
+        // this.funcionarioService.atualizaFuncionario(this.funcionario).subscribe(
+
+        //   success => {
+
+        //     console.log('foi')
+        //   },
+        //   erro =>{
+
+        //     console.log(erro)
+
+
+
+        //   }
+
+        // );
+
+
+      }
     }
-    //   let pessoa: Pessoa = new Pessoa();
-    //   pessoa.id = 1234;
-    //   pessoa.nome = this.formulario.value['nome'];
-
-
-
-    //   // 
-
-    //   if(this.novo){
-    //    // this.funcionarioService.novoFuncionario(this.funcionario);
-    //   }else{
-    //    // this.funcionarioService.atualizarFuncionario(this.funcionario);
-    //   }
   }
+
+
+  hasError(field: string) {
+
+    
+    return this.formulario.get(field)?.errors
+    
+   }
 
 }

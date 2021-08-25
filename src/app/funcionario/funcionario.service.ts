@@ -1,3 +1,4 @@
+import { Funcao } from './../model/funcao';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Funcionario } from './../model/funcionario';
@@ -35,6 +36,12 @@ export class FuncionarioService {
 
 
     return this.http.post(this.API, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+  }
+
+  listFuncao(){
+
+    return this.http.get<Funcao[]>(`${this.API}/funcao`).pipe(take(1));
+
   }
 
 

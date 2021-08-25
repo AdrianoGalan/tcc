@@ -1,7 +1,7 @@
 <div class="container" style=" padding-top: 50px; width: 60%;" >
 
 
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" >
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()"  *ngIf="(funcao$ | async) as funcao; else loading" >
 
     <legend>Cadastro do funcionario</legend>
 
@@ -31,8 +31,8 @@
     <div class="row md-6">
       <label for="funcao" class="col-sm-3 col-form-label">Função:</label>
       <div class="col-sm-9">
-        <select style="margin: 5px;" id="funcao" class="form-select" formControlName="funcao">
-          <option *ngFor="let funcao of funcoes">{{ funcao }}</option>
+        <select style="margin: 5px;" id="funcao" class="form-select"  formControlName="funcao" >
+          <option *ngFor="let f of funcao" [ngValue]="f" >{{ f.funcao }}</option>
         </select>
       </div>
     </div>
@@ -45,3 +45,10 @@
   </form>
 
 </div>
+
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

@@ -47,8 +47,6 @@ export class LoginComponent implements OnInit {
       this.usuario.login = this.formulario.value['usuario']
       this.authService.fazerLogin(this.usuario);
 
-    }else{
-      console.log("eita")
     }
 
     

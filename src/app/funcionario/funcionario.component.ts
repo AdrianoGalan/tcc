@@ -37,6 +37,7 @@ export class FuncionarioComponent implements OnInit {
         return empty()
       })
     );
+
   }
 
 
