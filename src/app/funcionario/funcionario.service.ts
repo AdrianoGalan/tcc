@@ -1,6 +1,6 @@
 import { Funcao } from './../model/funcao';
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Funcionario } from './../model/funcionario';
 import { Injectable } from '@angular/core';
 import { tap, take } from 'rxjs/operators';
@@ -19,26 +19,32 @@ export class FuncionarioService {
   constructor(private http: HttpClient) {
 
 
-    
+
   }
 
   list() {
     return this.http.get<Funcionario[]>(this.API).pipe(take(1));
   }
 
-  getFuncionario(matricula: number){
+  getFuncionario(matricula: number) {
 
     return this.http.get<Funcionario>(`${this.API}/${matricula}`).pipe(take(1))
 
   }
 
-  atualizaFuncionario(funcionario: Funcionario){
+  salvarFuncionario(funcionario: Funcionario) {
 
 
     return this.http.post(this.API, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
   }
 
-  listFuncao(){
+  atualizarFuncionario(funcionario: Funcionario) {
+
+
+    return this.http.put(this.API, JSON.stringify(funcionario), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+  }
+
+  listFuncao() {
 
     return this.http.get<Funcao[]>(`${this.API}/funcao`).pipe(take(1));
 

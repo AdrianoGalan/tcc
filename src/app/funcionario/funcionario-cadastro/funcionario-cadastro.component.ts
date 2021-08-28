@@ -58,7 +58,6 @@ export class FuncionarioCadastroComponent implements OnInit {
 
     this.funcao$ = this.funcionarioService.listFuncao().pipe();
 
-    console.log(this.funcao$)
 
     this.formulario = this.formBuilder.group({
       matricula: [null],
@@ -77,7 +76,7 @@ export class FuncionarioCadastroComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       matricula: [this.funcionario.matricula],
       nome: [this.funcionario.pessoa.nome, [Validators.required, Validators.minLength(3)]],
-      funcao: [this.funcionario.funcao, Validators.required],
+      funcao: [this.funcionario.funcao.funcao, Validators.required],
       dataAdm: [this.funcionario.dataAdm, Validators.required]
 
     });
@@ -98,18 +97,17 @@ export class FuncionarioCadastroComponent implements OnInit {
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
 
-        console.log(this.funcionario)
+     
 
-        this.funcionarioService.atualizaFuncionario(this.funcionario).subscribe(
+        this.funcionarioService.salvarFuncionario(this.funcionario).subscribe(
 
           success => {
 
-            this.formulario.reset
+            this.formulario.reset();
 
           },
           erro => {
 
-            console.log(erro)
 
 
 
@@ -119,23 +117,30 @@ export class FuncionarioCadastroComponent implements OnInit {
 
       } else {
 
-        console.log("this.formulario.value['funcao']")
-        // this.funcionario.pessoa.nome = this.formulario.value['nome'];
-        // this.funcionarioService.atualizaFuncionario(this.funcionario).subscribe(
+       
 
-        //   success => {
+        this.funcionario.pessoa.nome = this.formulario.value['nome'];
+        this.funcionario.funcao = this.formulario.value['funcao'];
+        this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
-        //     console.log('foi')
-        //   },
-        //   erro =>{
+     
 
-        //     console.log(erro)
+        this.funcionarioService.atualizarFuncionario(this.funcionario).subscribe(
+
+          success => {
+
+           
+            this.formulario.reset();
+          },
+          erro => {
+
+          
 
 
 
-        //   }
+          }
 
-        // );
+        );
 
 
       }
@@ -145,9 +150,9 @@ export class FuncionarioCadastroComponent implements OnInit {
 
   hasError(field: string) {
 
-    
+
     return this.formulario.get(field)?.errors
-    
-   }
+
+  }
 
 }
