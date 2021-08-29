@@ -73,13 +73,11 @@ export class FuncionarioCadastroComponent implements OnInit {
   }
 
   povoar() {
-    this.formulario = this.formBuilder.group({
-      matricula: [this.funcionario.matricula],
-      nome: [this.funcionario.pessoa.nome, [Validators.required, Validators.minLength(3)]],
-      funcao: [this.funcionario.funcao.funcao, Validators.required],
-      dataAdm: [this.funcionario.dataAdm, Validators.required]
 
-    });
+    this.formulario.get('matricula')?.setValue(this.funcionario.matricula);
+    this.formulario.get('nome')?.setValue(this.funcionario.pessoa.nome);
+    this.formulario.get('funcao')?.setValue(this.funcionario.funcao.funcao);
+    this.formulario.get('dataAdm')?.setValue(this.funcionario.dataAdm);
   }
 
   onSubmit() {
