@@ -34,13 +34,23 @@ export class UsuarioComponent implements OnInit {
   }
 
   onDelete(u: Usuario){
-    this.service.deleteUsuario(u).pipe(
-      catchError(error => {
-        console.log(error)
-        this.handleError();
-        return empty()
-      })
+    this.service.deleteUsuario(u).subscribe(
+
+      success => {
+
+        console.log("morreu")
+        
+
+      },
+      erro => {
+
+        console.log(erro)
+
+
+      }
+
     );
+   
   }
 
 

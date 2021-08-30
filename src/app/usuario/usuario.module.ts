@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,9 @@ import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.co
   ],
   imports: [
     CommonModule,
-    UsuarioRoutingModule
-  ]
+    UsuarioRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+    ]
 })
 export class UsuarioModule { }

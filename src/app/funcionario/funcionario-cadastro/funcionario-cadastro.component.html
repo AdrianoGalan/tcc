@@ -31,7 +31,7 @@
     <div class="row md-6">
       <label for="funcao" class="col-sm-3 col-form-label">Função:</label>
       <div class="col-sm-9">
-        <select style="margin: 5px;" id="funcao" class="form-select"  formControlName="funcao" >
+        <select style="margin: 5px;" id="funcao" class="form-control"  formControlName="funcao" >
           <option *ngFor="let f of funcao" [ngValue]="f" >{{ f.funcao }}</option>
         </select>
       </div>

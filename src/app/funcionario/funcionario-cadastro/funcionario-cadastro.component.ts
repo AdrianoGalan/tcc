@@ -24,7 +24,6 @@ export class FuncionarioCadastroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private funcionarioService: FuncionarioService
   ) {
     this.inscricao = this.route.params.subscribe(
