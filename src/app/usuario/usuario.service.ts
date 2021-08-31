@@ -23,9 +23,10 @@ export class UsuarioService {
 
   getUsuario(id: number) {
 
-    return this.http.get<Usuario[]>(`${this.API}/${id}`).pipe(take(1))
+    return this.http.get<Usuario>(`${this.API}/${id}`).pipe(take(1))
 
   }
+
 
   deleteUsuario(u: Usuario) {
 
@@ -38,6 +39,12 @@ export class UsuarioService {
   salvarUsuario(u: Usuario){
 
     return this.http.post(this.API, JSON.stringify(u), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+
+  }
+
+  atualizarUsuario(u: Usuario){
+
+    return this.http.put(this.API, JSON.stringify(u), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
 
   }
 }

@@ -1,6 +1,9 @@
 import { Usuario } from './../model/usuario';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +12,34 @@ export class AuthService {
 
   private usuarioAutenticado: boolean = false;
   mostrarMenuEmitter = new EventEmitter<boolean>();
+  private readonly API = `${environment.API}usuario`
+  valido: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private http: HttpClient
+    ) {
 
    }
 
   fazerLogin(usuario: Usuario){
-    if(usuario.login === 'usuario' && usuario.senha === '1234'){
+
+    this.validar(usuario).subscribe(
+      success => {
+
+        console.log("validou")
+        
+
+      },
+      erro => {
+
+        console.log(erro)
+
+
+      }
+    )
+
+    if(this.valido){
       this.usuarioAutenticado = true;
 
       this.mostrarMenuEmitter.emit(true);
@@ -36,5 +60,11 @@ export class AuthService {
     this.usuarioAutenticado = false;
     this.mostrarMenuEmitter.emit(false);
     this.router.navigate(['login']);
+  }
+
+  validar(u: Usuario){
+
+    return this.http.get<boolean>(`${this.API}/${u}`).pipe(take(1))
+
   }
 }

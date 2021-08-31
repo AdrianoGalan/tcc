@@ -1,10 +1,11 @@
 import { Usuario } from './../../model/usuario';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FuncionarioService } from './../../funcionario/funcionario.service';
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/model/funcionario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../usuario.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -16,13 +17,43 @@ export class UsuarioCadastroComponent implements OnInit {
 
   funcionarios$!: Observable<Funcionario[]>;
   formulario!: FormGroup;
-  novo: boolean = true;
+  novo: boolean = false;
+  inscricao: Subscription;
+  usuario!: Usuario;
 
   constructor(
     private formBuilder: FormBuilder,
     private funcionarioService: FuncionarioService,
+    private route: ActivatedRoute,
     private usuarioService: UsuarioService
-  ) { }
+  ) {
+
+    this.inscricao = this.route.params.subscribe(
+      (params: any) => {
+        let id = params['login'];
+
+        if (id == null) {
+          this.novo = true;
+        } else {
+
+          this.usuarioService.getUsuario(id).subscribe(
+            u => {
+
+              this.usuario = u
+              if (u) {
+                this.povoar();
+              }
+
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+  }
 
   ngOnInit(): void {
 
@@ -45,13 +76,14 @@ export class UsuarioCadastroComponent implements OnInit {
 
       if (this.novo) {
 
-        let usuario = new Usuario();
-        usuario.funcionario = this.formulario.value['funcionario'];
-        usuario.senha = this.formulario.value['senha'];
-        usuario.login = this.formulario.value['login'];
-        usuario.permissao = this.formulario.value['permissao'];
+        this.usuario = new Usuario();
 
-        this.usuarioService.salvarUsuario(usuario).subscribe(
+        this.usuario.funcionario = this.formulario.value['funcionario'];
+        this.usuario.senha = this.formulario.value['senha'];
+        this.usuario.login = this.formulario.value['login'];
+        this.usuario.permissao = this.formulario.value['permissao'];
+
+        this.usuarioService.salvarUsuario(this.usuario).subscribe(
 
           success => {
 
@@ -67,12 +99,43 @@ export class UsuarioCadastroComponent implements OnInit {
 
         );
 
+
       } else {
-        console.log('não é novo')
+
+        this.usuario.funcionario = this.formulario.value['funcionario'];
+        this.usuario.senha = this.formulario.value['senha'];
+        this.usuario.login = this.formulario.value['login'];
+        this.usuario.permissao = this.formulario.value['permissao'];
+
+        this.usuarioService.atualizarUsuario(this.usuario).subscribe(
+
+          success => {
+
+            this.formulario.reset();
+
+          },
+          erro => {
+
+            console.log(erro)
+
+
+          }
+
+        );
       }
     } else {
       console.log('não é valido')
     }
+  }
+
+
+  povoar() {
+
+    this.formulario.get('funcionario')?.setValue(this.usuario.funcionario);
+    this.formulario.get('permissao')?.setValue(this.usuario.permissao);
+    this.formulario.get('senha')?.setValue(this.usuario.senha);
+    this.formulario.get('login')?.setValue(this.usuario.login);
+
   }
 
 }
