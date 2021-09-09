@@ -2,7 +2,7 @@ import { Usuario } from './../model/usuario';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
 @Injectable({
@@ -64,7 +64,7 @@ export class AuthService {
 
   validar(u: Usuario){
 
-    return this.http.get<boolean>(`${this.API}/${u}`).pipe(take(1))
+    return this.http.post(`${this.API}/${u.login}`, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).pipe(take(1))
 
   }
 }

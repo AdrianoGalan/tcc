@@ -32,7 +32,7 @@ export class UsuarioService {
 
     console.log(`${this.API}/delete/${u}`)
 
-    return this.http.delete(`${this.API}/delete/${u}`,{responseType: 'text' }).pipe(take(1))
+    return this.http.delete(`${this.API}/delete/${u.login}`,{headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1))
 
   }
 
@@ -44,7 +44,7 @@ export class UsuarioService {
 
   atualizarUsuario(u: Usuario){
 
-    return this.http.put(this.API, JSON.stringify(u), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+    return this.http.put(this.API, JSON.stringify(u), { headers: new HttpHeaders().set('.Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
 
   }
 }
