@@ -58,9 +58,10 @@
         class="form-control"
         formControlName="setor"
       >
-        <option value="1">Usuario</option>
-        <option value="2">Manutentor</option>
-        <option value="3">Administrador</option>
+      <option *ngFor="let s of setor$ | async" [ngValue]="s">
+        {{ s.nome }}
+      </option>
+        
       </select>
     </div>
     <div class="col-sm-1">
