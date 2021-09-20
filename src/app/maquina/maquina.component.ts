@@ -2,7 +2,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable, empty } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Component, OnInit } from '@angular/core';
-import { MaquinaServiceService } from './maquina.service';
+import { MaquinaService } from './maquina.service';
 import { Maquina } from '../model/maquina';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 
@@ -18,7 +18,7 @@ export class MaquinaComponent implements OnInit {
   maquina$!: Observable<Maquina[]>;
 
   constructor(
-    private service: MaquinaServiceService,
+    private service: MaquinaService,
     private modalService: BsModalService
   ) { }
 

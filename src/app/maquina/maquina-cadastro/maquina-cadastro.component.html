@@ -1,0 +1,87 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <label for="sigla" class="col-sm-3 col-form-label">Sigla:</label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        autocomplete="off"
+        placeholder="Digite uma Sigla"
+        formControlName="sigla"
+        id="siglaNova"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="dataCompra" class="col-sm-3 col-form-label">Data Compra:</label>
+    <div class="col-sm-9">
+      <input
+        type="date"
+        class="form-control"
+        autocomplete="off"
+        formControlName="dataCompra"
+        id="dataCompra"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="fabricante" class="col-sm-3 col-form-label">Fabricante:</label>
+    <div class="col-sm-8">
+      <select
+        style="margin: 5px"
+        id="fabricante"
+        class="form-control"
+        formControlName="fabricante"
+      >
+        <option *ngFor="let f of fabricante$ | async" [ngValue]="f">
+          {{ f.id }} - {{ f.nome }}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-1">
+        <i
+        class="bi bi-plus-circle-fill"
+        style="font-size: 2rem; color: rgb(30, 126, 11)"
+        tooltip = "adicionar novo Fabricante"
+      ></i>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="setor" class="col-sm-3 col-form-label">Setor:</label>
+    <div class="col-sm-8">
+      <select
+        style="margin: 5px"
+        id="setor"
+        class="form-control"
+        formControlName="setor"
+      >
+        <option value="1">Usuario</option>
+        <option value="2">Manutentor</option>
+        <option value="3">Administrador</option>
+      </select>
+    </div>
+    <div class="col-sm-1">
+      <i
+      (click)="addSetor()"
+        class="bi bi-plus-circle-fill"
+        style="font-size: 2rem; color: rgb(30, 126, 11)"
+        tooltip = "adicionar novo setor"
+      ></i>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-9">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </div>
+</form>
+
+<ng-template #novoFabricante>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

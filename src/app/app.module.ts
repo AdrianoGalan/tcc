@@ -1,3 +1,4 @@
+import { SetorModule } from './setor/setor.module';
 import { LoginModule } from './login/login.module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TooltipModule,
+    SetorModule
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent]

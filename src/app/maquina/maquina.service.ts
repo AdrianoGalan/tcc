@@ -7,7 +7,7 @@ import { Maquina } from '../model/maquina';
 @Injectable({
   providedIn: 'root'
 })
-export class MaquinaServiceService {
+export class MaquinaService {
 
   private readonly API = `${environment.API}maquina`
 
