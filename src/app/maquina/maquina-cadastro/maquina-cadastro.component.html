@@ -36,12 +36,13 @@
         formControlName="fabricante"
       >
         <option *ngFor="let f of fabricante$ | async" [ngValue]="f">
-          {{ f.id }} - {{ f.nome }}
+          {{ f.id }} - {{ f.pessoa.nome }}
         </option>
       </select>
     </div>
     <div class="col-sm-1">
         <i
+        (click)="addFabricante()"
         class="bi bi-plus-circle-fill"
         style="font-size: 2rem; color: rgb(30, 126, 11)"
         tooltip = "adicionar novo Fabricante"

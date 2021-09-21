@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SetorComponent } from 'src/app/setor/setor.component';
 import { catchError } from 'rxjs/operators';
+import { FabricanteComponent } from 'src/app/fabricante/fabricante.component';
+import { FabricanteService } from 'src/app/fabricante/fabricante.service';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class MaquinaCadastroComponent implements OnInit {
     private route: ActivatedRoute,
     private maquinaService: MaquinaService,
     private setorService: SetorService,
+    private fabricanteService: FabricanteService,
     private modalService: BsModalService
   ) {
     this.inscricao = this.route.params.subscribe(
@@ -80,6 +83,7 @@ export class MaquinaCadastroComponent implements OnInit {
 
   onRefresh() {
     this.setor$ = this.setorService.list().pipe();
+    this.fabricante$ = this.fabricanteService.list().pipe();
 
   }
 
@@ -90,6 +94,13 @@ export class MaquinaCadastroComponent implements OnInit {
   addSetor(){
 
     this.bsModalRef = this.modalService.show(SetorComponent);
+
+  }
+
+
+  addFabricante(){
+
+    this.bsModalRef = this.modalService.show(FabricanteComponent);
 
   }
 

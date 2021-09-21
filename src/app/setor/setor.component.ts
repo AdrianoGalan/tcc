@@ -43,12 +43,12 @@ export class SetorComponent implements OnInit {
 
     this.submitted = true;
 
-    console.log('1');
+    
 
     if (this.formulario.valid) {
 
 
-      console.log('2');
+      
 
       let setor: Setor = new Setor();
       setor.nome = this.formulario.value['nome'];
@@ -56,13 +56,12 @@ export class SetorComponent implements OnInit {
 
 
 
-      console.log(setor);
+   
 
       this.setorservice.salvarSetor(setor).subscribe(
         success => {
 
 
-          console.log('3');
           this.bsModalRef.hide();
         },
         erro => {

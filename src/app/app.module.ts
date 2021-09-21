@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { FabricanteModule } from './fabricante/fabricante.module';
 
 
 
@@ -26,7 +27,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     HttpClientModule,
     BrowserAnimationsModule,
     TooltipModule,
-    SetorModule
+    SetorModule,
+    FabricanteModule
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent]
