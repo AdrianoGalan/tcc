@@ -24,6 +24,7 @@ export class FuncionarioCadastroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private funcionarioService: FuncionarioService
   ) {
     this.inscricao = this.route.params.subscribe(
@@ -94,13 +95,14 @@ export class FuncionarioCadastroComponent implements OnInit {
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
 
-     
+
 
         this.funcionarioService.salvarFuncionario(this.funcionario).subscribe(
 
           success => {
 
             this.formulario.reset();
+            this.router.navigate(['funcionario']);
 
           },
           erro => {
@@ -114,24 +116,23 @@ export class FuncionarioCadastroComponent implements OnInit {
 
       } else {
 
-       
+
 
         this.funcionario.pessoa.nome = this.formulario.value['nome'];
         this.funcionario.funcao = this.formulario.value['funcao'];
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
-     
+
 
         this.funcionarioService.atualizarFuncionario(this.funcionario).subscribe(
 
           success => {
-
-           
             this.formulario.reset();
+            this.router.navigate(['funcionario']);
           },
           erro => {
 
-          
+
 
 
 
@@ -144,7 +145,7 @@ export class FuncionarioCadastroComponent implements OnInit {
     }
   }
 
-  comparar(obj1: Funcao, obj2: Funcao){
+  comparar(obj1: Funcao, obj2: Funcao) {
 
     return obj1 && obj2 ? (obj1.funcao === obj2.funcao) : obj1 === obj2;
   }

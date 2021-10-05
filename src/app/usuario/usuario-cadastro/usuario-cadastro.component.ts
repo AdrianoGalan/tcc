@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/model/funcionario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -25,6 +25,7 @@ export class UsuarioCadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private funcionarioService: FuncionarioService,
     private route: ActivatedRoute,
+    private router: Router,
     private usuarioService: UsuarioService
   ) {
 
@@ -88,6 +89,7 @@ export class UsuarioCadastroComponent implements OnInit {
           success => {
 
             this.formulario.reset();
+            this.router.navigate(['usuario'])
 
           },
           erro => {
@@ -107,11 +109,13 @@ export class UsuarioCadastroComponent implements OnInit {
         this.usuario.login = this.formulario.value['login'];
         this.usuario.permissao = this.formulario.value['permissao'];
 
-        this.usuarioService.atualizarUsuario(this.usuario).subscribe(
+        this.usuarioService.salvarUsuario(this.usuario).subscribe(
 
           success => {
 
             this.formulario.reset();
+            this.router.navigate(['usuario'])
+            
 
           },
           erro => {
@@ -128,6 +132,9 @@ export class UsuarioCadastroComponent implements OnInit {
     }
   }
 
+  comparar(obj1: Funcionario, obj2: Funcionario){
+    return obj1 && obj2 ? (obj1.matricula === obj2.matricula) : obj1 === obj2;
+  }
 
   povoar() {
 
