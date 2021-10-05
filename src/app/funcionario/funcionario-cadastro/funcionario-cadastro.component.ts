@@ -75,7 +75,7 @@ export class FuncionarioCadastroComponent implements OnInit {
 
     this.formulario.get('matricula')?.setValue(this.funcionario.matricula);
     this.formulario.get('nome')?.setValue(this.funcionario.pessoa.nome);
-    this.formulario.get('funcao')?.setValue(this.funcionario.funcao.funcao);
+    this.formulario.get('funcao')?.setValue(this.funcionario.funcao);
     this.formulario.get('dataAdm')?.setValue(this.funcionario.dataAdm);
   }
 
@@ -144,6 +144,10 @@ export class FuncionarioCadastroComponent implements OnInit {
     }
   }
 
+  comparar(obj1: Funcao, obj2: Funcao){
+
+    return obj1 && obj2 ? (obj1.funcao === obj2.funcao) : obj1 === obj2;
+  }
 
   hasError(field: string) {
 

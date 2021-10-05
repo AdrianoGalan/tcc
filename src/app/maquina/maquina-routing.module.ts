@@ -5,7 +5,8 @@ import { MaquinaComponent } from './maquina.component';
 
 const routes: Routes = [
   { path: '', component: MaquinaComponent },
-  { path: 'cadastrar', component: MaquinaCadastroComponent }
+  { path: 'cadastrar', component: MaquinaCadastroComponent },
+  { path: 'atualizar/:sigla', component: MaquinaCadastroComponent}
 ];
 
 @NgModule({

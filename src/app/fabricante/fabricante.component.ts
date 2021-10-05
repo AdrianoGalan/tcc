@@ -31,7 +31,7 @@ export class FabricanteComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
 
-      nome: [null, [Validators.required, Validators.minLength(3)]]
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]]
 
     });
   }

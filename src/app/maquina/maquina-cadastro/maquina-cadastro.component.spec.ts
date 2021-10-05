@@ -10,7 +10,7 @@ describe('MaquinaCadastroComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ MaquinaCadastroComponent ]
     })
-    .compileComponents();
+    .compileComponents(); 
   });
 
   beforeEach(() => {

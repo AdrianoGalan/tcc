@@ -1,54 +1,71 @@
-<div class="container" style=" padding-top: 50px; width: 60%;" >
-
-
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()"  *ngIf="(funcao$ | async) as funcao; else loading" >
-
+<div class="container" style="padding-top: 50px; width: 60%">
+  <form
+    [formGroup]="formulario"
+    (ngSubmit)="onSubmit()"
+    *ngIf="funcao$ | async as funcao; else loading"
+  >
     <legend>Cadastro do funcionario</legend>
-
 
     <div *ngIf="!novo" class="row md-6">
       <label for="matricula" class="col-sm-3 col-form-label">Matricula:</label>
-      <div  class="col-sm-4">
-        <input style="margin: 5px;" id="matricula" type="text" class="form-control-plaintext" value="1234"
-          formControlName="matricula" readonly>
+      <div class="col-sm-4">
+        <input
+          style="margin: 5px"
+          id="matricula"
+          type="text"
+          class="form-control-plaintext"
+          value="1234"
+          formControlName="matricula"
+          readonly
+        />
       </div>
     </div>
 
     <div class="row md-6">
       <label for="nome" class="col-sm-3 col-form-label">Nome:</label>
       <div class="col-sm-9">
-        <input style="margin: 5px;" type="text" class="form-control"  formControlName="nome">
+        <input
+          style="margin: 5px"
+          type="text"
+          class="form-control"
+          formControlName="nome"
+        />
       </div>
     </div>
 
     <div class="row md-6">
       <label for="nome" class="col-sm-3 col-form-label">Data Adm:</label>
       <div class="col-sm-9">
-        <input style="margin: 5px;" type="date" class="form-control" formControlName="dataAdm">
+        <input
+          style="margin: 5px"
+          type="date"
+          class="form-control"
+          formControlName="dataAdm"
+        />
       </div>
     </div>
 
     <div class="row md-6">
       <label for="funcao" class="col-sm-3 col-form-label">Função:</label>
       <div class="col-sm-9">
-        <select style="margin: 5px;" id="funcao" class="form-control"  formControlName="funcao" >
-          <option *ngFor="let f of funcao" [ngValue]="f" >{{ f.funcao }}</option>
+        <select
+          style="margin: 5px"
+          id="funcao"
+          class="form-control"
+          formControlName="funcao"
+          [compareWith]="comparar"
+        >
+          <option *ngFor="let f of funcao" [ngValue]="f">{{ f.funcao }}</option>
         </select>
       </div>
     </div>
 
-
-
-
     <button type="submit" class="btn btn-primary">Salvar</button>
-
   </form>
-
 </div>
-
 
 <ng-template #loading>
   <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+    <span class="sr-only">Loading...</span>
   </div>
 </ng-template>

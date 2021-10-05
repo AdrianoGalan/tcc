@@ -9,7 +9,9 @@
         placeholder="Digite uma Sigla"
         formControlName="sigla"
         id="siglaNova"
+        [ngClass]="{ 'is-invalid': submitted && hasError('sigla') }"
       />
+      <div class="invalid-feedback">Digite a sigla</div>
     </div>
   </div>
 
@@ -22,7 +24,9 @@
         autocomplete="off"
         formControlName="dataCompra"
         id="dataCompra"
+        [ngClass]="{ 'is-invalid': submitted && hasError('dataCompra') }"
       />
+      <div class="invalid-feedback">Digite a Data da compra</div>
     </div>
   </div>
 
@@ -34,18 +38,21 @@
         id="fabricante"
         class="form-control"
         formControlName="fabricante"
+        [compareWith]="comparar"
+        [ngClass]="{ 'is-invalid': submitted && hasError('fabricante') }"
       >
         <option *ngFor="let f of fabricante$ | async" [ngValue]="f">
           {{ f.id }} - {{ f.pessoa.nome }}
         </option>
       </select>
+      <div class="invalid-feedback">Selecione um Fabricante</div>
     </div>
     <div class="col-sm-1">
-        <i
+      <i
         (click)="addFabricante()"
         class="bi bi-plus-circle-fill"
         style="font-size: 2rem; color: rgb(30, 126, 11)"
-        tooltip = "adicionar novo Fabricante"
+        tooltip="adicionar novo Fabricante"
       ></i>
     </div>
   </div>
@@ -58,19 +65,21 @@
         id="setor"
         class="form-control"
         formControlName="setor"
+        [compareWith]="comparar"
+        [ngClass]="{ 'is-invalid': submitted && hasError('setor') }"
       >
-      <option *ngFor="let s of setor$ | async" [ngValue]="s">
-        {{ s.nome }}
-      </option>
-        
+        <option *ngFor="let s of setor$ | async" [ngValue]="s">
+          {{ s.id }} - {{ s.nome }}
+        </option>
       </select>
+      <div class="invalid-feedback">Selecione um Setor</div>
     </div>
     <div class="col-sm-1">
       <i
-      (click)="addSetor()"
+        (click)="addSetor()"
         class="bi bi-plus-circle-fill"
         style="font-size: 2rem; color: rgb(30, 126, 11)"
-        tooltip = "adicionar novo setor"
+        tooltip="adicionar novo setor"
       ></i>
     </div>
   </div>
