@@ -13,9 +13,6 @@ export class FuncionarioService {
   private readonly API = `${environment.API}funcionario`
 
 
-  private funcao: string[] = ['Eletricista', 'Mecanico', 'Lubrificador', 'Coordenador', 'Supervisor']
-
-
   constructor(private http: HttpClient) {
 
 

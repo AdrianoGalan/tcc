@@ -63,7 +63,8 @@ export class FuncionarioCadastroComponent implements OnInit {
       matricula: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]],
       funcao: [null, Validators.required],
-      dataAdm: [null, Validators.required]
+      dataAdm: [null, Validators.required],
+      manutentor: [null, Validators.required]
 
     });
 
@@ -78,6 +79,11 @@ export class FuncionarioCadastroComponent implements OnInit {
     this.formulario.get('nome')?.setValue(this.funcionario.pessoa.nome);
     this.formulario.get('funcao')?.setValue(this.funcionario.funcao);
     this.formulario.get('dataAdm')?.setValue(this.funcionario.dataAdm);
+
+    if(this.funcionario.manutentor == 'Sim'){
+      this.formulario.get('manutentor')?.setValue(true);
+    }
+
   }
 
   onSubmit() {
@@ -93,6 +99,12 @@ export class FuncionarioCadastroComponent implements OnInit {
         this.funcionario.pessoa.nome = this.formulario.value['nome'];
         this.funcionario.funcao = this.formulario.value['funcao'];
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
+
+        if( this.formulario.value['manutentor']){
+          this.funcionario.manutentor = 'Sim'
+        }else{
+          this.funcionario.manutentor = 'Não'
+        }
 
 
 
@@ -123,6 +135,11 @@ export class FuncionarioCadastroComponent implements OnInit {
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
 
 
+        if( this.formulario.value['manutentor']){
+          this.funcionario.manutentor = 'Sim'
+        }else{
+          this.funcionario.manutentor = 'Nao'
+        }
 
         this.funcionarioService.atualizarFuncionario(this.funcionario).subscribe(
 

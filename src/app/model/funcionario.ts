@@ -7,4 +7,5 @@ export class Funcionario {
   pessoa!: Pessoa;
   dataAdm!: string;
   funcao!: Funcao;
+  manutentor!: string;
 }

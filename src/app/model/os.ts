@@ -1,4 +1,4 @@
-import { Manutentor } from './manutentor';
+import { Funcionario } from './funcionario';
 import { Maquina } from './maquina';
 export class Os {
 
@@ -10,6 +10,7 @@ export class Os {
     defeito!: string;
     reparo!: string;
     statusOs!: string;
-    siglaMaquina!: Maquina;
-    idManutentor!: Manutentor;
+    maquina!: Maquina;
+    oficina!: string;
+    manutentor!: Funcionario;
 }

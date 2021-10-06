@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { OsRoutingModule } from './os-routing.module';
 import { OsComponent } from './os.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,8 @@ import { OsComponent } from './os.component';
   ],
   imports: [
     CommonModule,
-    OsRoutingModule
-  ]
+    OsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule  ]
 })
 export class OsModule { }
