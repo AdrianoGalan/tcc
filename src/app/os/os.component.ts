@@ -9,7 +9,8 @@ import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component
 @Component({
   selector: 'app-os',
   templateUrl: './os.component.html',
-  styleUrls: ['./os.component.css']
+  styleUrls: ['./os.component.css'],
+  preserveWhitespaces: true
 })
 export class OsComponent implements OnInit {
 

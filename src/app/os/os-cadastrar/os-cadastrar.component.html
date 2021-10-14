@@ -1,58 +1,37 @@
 <div class="container" style="padding-top: 10px; width: 60%">
-  <form
-    [formGroup]="formulario"
-    (ngSubmit)="onSubmit()"
-    *ngIf="maquina$ | async as maquina; else loading"
-  >
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngIf="maquina$ | async as maquina; else loading">
     <legend>Gerar nova OS</legend>
 
     <div class="row md-6">
-        <label for="maquina" class="col-sm-3 col-form-label">Maquina:</label>
-        <div class="col-sm-9">
-          <select
-            style="margin: 5px"
-            id="maquina"
-            class="form-control"
-            formControlName="maquina"
-            [ngClass]="{ 'is-invalid': submitted && hasError('maquina') }"
-          >
-            <option *ngFor="let m of maquina" [ngValue]="m">{{ m.sigla }}</option>
-          </select>
-          <div class="invalid-feedback">Selecione a Maquina</div>
-        </div>
+      <label for="maquina" class="col-sm-3 col-form-label">Maquina:</label>
+      <div class="col-sm-9">
+        <select style="margin: 5px" id="maquina" class="form-control" formControlName="maquina"
+          [ngClass]="{ 'is-invalid': submitted && hasError('maquina') }">
+          <option *ngFor="let m of maquina" [ngValue]="m">{{ m.sigla }}</option>
+        </select>
+        <div class="invalid-feedback">Selecione a Maquina</div>
       </div>
+    </div>
 
     <div class="row md-6">
       <label for="problema" class="col-sm-3 col-form-label">Problema:</label>
       <div class="col-sm-9">
-        <textarea
-          style="margin: 5px"
-          type="text"
-          placeholder="Descreva o problema da maquina"
-          class="form-control"
-          formControlName="problema"
-          [ngClass]="{ 'is-invalid': submitted && hasError('problema') }"
-        ></textarea>
+        <textarea style="margin: 5px" type="text" placeholder="Descreva o problema da maquina" class="form-control"
+          formControlName="problema" [ngClass]="{ 'is-invalid': submitted && hasError('problema') }"></textarea>
         <div class="invalid-feedback">Descreva o problema da maquina </div>
       </div>
     </div>
-  
-    <div class="row md-6">
-        <label for="oficia" class="col-sm-3 col-form-label">Oficina:</label>
-        <div class="col-sm-9">
-          <select
-            style="margin: 5px"
-            id="oficina"
-            class="form-control"
-            formControlName="oficina"
-            
-          >
-            <option *ngFor="let o of oficina" >{{ o }}</option>
-          </select>
-        </div>
-      </div>
 
- 
+    <div class="row md-6">
+      <label for="oficia" class="col-sm-3 col-form-label">Oficina:</label>
+      <div class="col-sm-9">
+        <select style="margin: 5px" id="oficina" class="form-control" formControlName="oficina">
+          <option *ngFor="let o of oficina">{{ o }}</option>
+        </select>
+      </div>
+    </div>
+
+
 
     <button type="submit" class="btn btn-primary">Salvar</button>
   </form>

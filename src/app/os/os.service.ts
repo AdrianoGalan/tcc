@@ -1,24 +1,31 @@
-import { take } from 'rxjs/operators';
-import { Os } from './../model/os';
-import { environment } from './../../environments/environment';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { take } from "rxjs/operators";
+import { Os } from "./../model/os";
+import { environment } from "./../../environments/environment";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class OsService {
+  private readonly API = `${environment.API}os`;
 
-  private readonly API = `${environment.API}os`
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<Os[]>(this.API).pipe(take(1));
   }
 
   salvarFuncionario(os: Os) {
+    return this.http
+      .post(this.API, JSON.stringify(os), {
+        headers: new HttpHeaders().set("Content-Type", "application/json"),
+        responseType: "text",
+      })
+      .pipe(take(1));
+  }
 
-    return this.http.post(this.API, JSON.stringify(os), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+  getOs(id: number) {
+    return this.http.get<Os>(`${this.API}/${id}`).pipe(take(1));
   }
 }

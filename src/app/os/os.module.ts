@@ -5,13 +5,17 @@ import { CommonModule } from '@angular/common';
 import { OsRoutingModule } from './os-routing.module';
 import { OsComponent } from './os.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OsAtualizarComponent } from './os-atualizar/os-atualizar.component';
+import { OsFinalizarComponent } from './os-finalizar/os-finalizar.component';
 
 
 
 @NgModule({
   declarations: [
     OsComponent,
-    OsCadastrarComponent
+    OsCadastrarComponent,
+    OsAtualizarComponent,
+    OsFinalizarComponent
   ],
   imports: [
     CommonModule,
