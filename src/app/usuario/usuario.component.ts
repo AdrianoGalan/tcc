@@ -26,7 +26,7 @@ export class UsuarioComponent implements OnInit {
 
     this.usuarios$ = this.service.list().pipe(
       catchError(error => {
-        this.handleError();
+        this.handleError('Erro ao carregar');
         return empty()
       })
     );
@@ -38,13 +38,13 @@ export class UsuarioComponent implements OnInit {
 
       success => {
 
-        console.log("morreu")
-        
+        this.handleError('Usuario Deletado');
+        this.ngOnInit();
 
       },
       erro => {
 
-        console.log(erro)
+        this.handleError('Erro ao Deletar');
 
 
       }
@@ -54,10 +54,10 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-  handleError(){
+  handleError(erro: string){
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Erro ao carregar';
+    this.bsModalRef.content.message = erro;
   }
 
 }

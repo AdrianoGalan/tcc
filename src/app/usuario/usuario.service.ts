@@ -30,9 +30,7 @@ export class UsuarioService {
 
   deleteUsuario(u: Usuario) {
 
-    console.log(`${this.API}/delete/${u}`)
-
-    return this.http.delete(`${this.API}/delete/${u.login}`, { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1))
+    return this.http.put(`${this.API}/delete/`, JSON.stringify(u), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1))
 
   }
 

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:8080/WebServeTcc/'
+ // API: 'http://179.247.250.6:8080/WebServeTcc/'
+  API: 'http://192.168.15.167:8080/WebServeTcc/'
 };
 
 /*
