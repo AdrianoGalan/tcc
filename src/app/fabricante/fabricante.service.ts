@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { take } from 'rxjs/operators';
 import { Fabricante } from './../model/fabricante';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
