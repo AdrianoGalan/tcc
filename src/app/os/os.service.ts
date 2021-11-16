@@ -16,7 +16,7 @@ export class OsService {
     return this.http.get<Os[]>(this.API).pipe(take(1));
   }
 
-  salvarFuncionario(os: Os) {
+  salvarOs(os: Os) {
     return this.http
       .post(this.API, JSON.stringify(os), {
         headers: new HttpHeaders().set("Content-Type", "application/json"),

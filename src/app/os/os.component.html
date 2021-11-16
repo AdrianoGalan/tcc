@@ -1,4 +1,3 @@
-
 <div class="container">
   <legend>Os</legend><br>
   <nav class="navbar navbar-light bg-light">
@@ -31,14 +30,10 @@
           <td>{{ o.statusOs }}</td>
           <td>
             <span class="float-end">
-              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + o.id">
-                Atualizar
+              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'finalizar/' + o.id">
+                Finalizar
               </button>
             </span>
-
-            <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'finalizar/' + o.id">
-              Finalizar
-            </button>
           </td>
         </tr>
       </tbody>

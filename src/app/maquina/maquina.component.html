@@ -2,28 +2,17 @@
   <legend>Maquinas</legend><br>
   <nav class="navbar navbar-light bg-light">
     <div class="form-inline">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
 
       <button class="btn btn-outline-success my-2 my-sm-0">Procurar</button>
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
-        [routerLink]="'cadastrar'"
-      >
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'cadastrar'">
         Novo
       </button>
     </div>
   </nav>
 
   <div class="container">
-    <table
-      class="table table-hover"
-      *ngIf="maquina$ | async as maquina; else loading"
-    >
+    <table class="table table-hover" *ngIf="maquina$ | async as maquina; else loading">
       <thead>
         <tr>
           <th>Sigla</th>
@@ -41,12 +30,14 @@
           <td>{{ m.dataCompra }}</td>
           <td>
             <span class="float-end">
-              <button
-                class="btn btn-outline-warning mb-1 btn-sm"
-                [routerLink]="'atualizar/' + m.sigla"
-              >
+              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + m.sigla">
                 Atualizar
               </button>
+
+              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + m.sigla">
+                Previsões de quebra
+              </button>
+
             </span>
           </td>
         </tr>

@@ -39,7 +39,7 @@ export class OsFinalizarComponent implements OnInit {
 
       this.os$ = this.osService.getOs(id).pipe(
         catchError((error) => {
-          this.handleError();
+          this.handleError("Erro ao carregar");
           this.router.navigate(["os"]);
           return empty();
         })
@@ -62,8 +62,7 @@ export class OsFinalizarComponent implements OnInit {
       iniReparoDate: [null, Validators.required],
       iniReparoTime: [null, Validators.required],
       fimReparoTime: [null, Validators.required],
-      fimReparoDate: [null, Validators.required],
-      oficina: [null, Validators.required]
+      fimReparoDate: [null, Validators.required]
 
     });
 
@@ -77,10 +76,48 @@ export class OsFinalizarComponent implements OnInit {
     )
 
     this.funcionarios$ = this.funcionarioService.list();
-    console.log(this.os)
+    
   }
 
   onSubmit() {
+
+    this.submitted = true;
+  
+
+    if(this.formulario.valid){
+
+      let dataInicio: string
+      let dataFim: string
+  
+      dataInicio = this.formulario.value['iniReparoDate'] + " " + this.formulario.value['iniReparoTime'];
+      dataFim = this.formulario.value['fimReparoDate'] + " " + this.formulario.value['fimReparoTime'];
+  
+      this.os.defeito = this.formulario.value['defeito'];
+      this.os.manutentor = this.formulario.value['funcionario'];
+      this.os.problema = this.formulario.value['problema'];
+      this.os.reparo = this.formulario.value['reparo'];
+      this.os.dataIniManutencao = dataInicio;
+      this.os.dataFimManutencao = dataFim;
+      this.os.statusOs = 'C'
+
+      this.osService.salvarOs(this.os).subscribe(
+
+        success => {
+
+          this.formulario.reset();
+          this.router.navigate(['os']);
+
+        },
+        erro => {
+
+          this.handleError("Erro ao salvar Os");
+
+        }
+
+      );
+
+    }
+
 
   }
 
@@ -96,10 +133,10 @@ export class OsFinalizarComponent implements OnInit {
 
   }
 
-  handleError() {
+  handleError(msg: string) {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = "danger";
-    this.bsModalRef.content.message = "Erro ao carregar";
+    this.bsModalRef.content.message = msg;
   }
 
   hasError(field: string) {

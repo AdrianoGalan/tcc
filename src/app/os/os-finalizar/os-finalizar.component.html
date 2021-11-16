@@ -25,17 +25,20 @@
         <div class="form-row">
             <div class="form-group col-md-5">
                 <label for="defeito">Defeito:</label>
-                <input type="text" class="form-control" formControlName="defeito" id="defeito">
+                <input type="text" class="form-control" formControlName="defeito" id="defeito"
+                [ngClass]="{ 'is-invalid': submitted && hasError('defeito') }">
+                <div class="invalid-feedback">Descreva o Defeito da maquina </div>
             </div>
 
             <div class="col-sm-4">
                 <label for="defeito">Responsavel:</label>
                 <select style="margin: 5px" id="funcionario" class="form-control" formControlName="funcionario"
-                    [compareWith]="comparar">
-                    <option *ngFor="let f of funcionario" [ngValue]="f">
+                    [compareWith]="comparar" [ngClass]="{ 'is-invalid': submitted && hasError('funcionario') }">                    <option *ngFor="let f of funcionario" [ngValue]="f">
                         {{ f.matricula }} - {{ f.pessoa.nome }}
                     </option>
                 </select>
+                
+                <div class="invalid-feedback">Seleciona um responsavel </div>
             </div>
         </div>
 
@@ -54,13 +57,21 @@
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="iniReparo">Inicio Reparo:</label>
-                <input type="date" class="form-control" formControlName="iniReparoDate"  id="iniReparo">
-                <input type="time" class="form-control" formControlName="iniReparoTime" id="iniReparo">
+                <input type="date" class="form-control" formControlName="iniReparoDate"  id="iniReparo"
+                [ngClass]="{ 'is-invalid': submitted && hasError('iniReparoDate') }">
+                <div class="invalid-feedback">Entre com a data inicio </div>
+                <input type="time" class="form-control" formControlName="iniReparoTime" id="iniReparo"
+                [ngClass]="{ 'is-invalid': submitted && hasError('iniReparoTime') }">
+                <div class="invalid-feedback">Entre com a data inicio </div>
             </div>
             <div class="form-group col-md-2">
                 <label for="iniReparo">Fim Reparo:</label>
-                <input type="date" class="form-control" formControlName="fimReparoDate" id="iniReparo">
-                <input type="time" class="form-control" formControlName="fimReparoTime" id="iniReparo">
+                <input type="date" class="form-control" formControlName="fimReparoDate" id="iniReparo"
+                [ngClass]="{ 'is-invalid': submitted && hasError('fimReparoDate') }">
+                <div class="invalid-feedback">Entre com a data final </div>
+                <input type="time" class="form-control" formControlName="fimReparoTime" id="iniReparo"
+                [ngClass]="{ 'is-invalid': submitted && hasError('fimReparoTime') }">
+                <div class="invalid-feedback">Entre com a data final </div>
             </div>
         </div>
 
