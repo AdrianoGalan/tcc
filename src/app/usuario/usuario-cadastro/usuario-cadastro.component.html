@@ -1,7 +1,7 @@
 <form
   [formGroup]="formulario"
   (ngSubmit)="onSubmit()"
-  *ngIf="funcionarios$ | async as funcionario; else loading"
+  *ngIf="funcionarios$ | async as funcionario; else loading" 
   style="padding: 10px"
 >
 <legend>Cadastro Usuario</legend><br>
