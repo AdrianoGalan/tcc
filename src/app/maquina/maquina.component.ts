@@ -1,4 +1,5 @@
-import { catchError } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 import { Observable, empty } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Component, OnInit } from '@angular/core';
@@ -36,6 +37,11 @@ export class MaquinaComponent implements OnInit {
 
       )
     )
+  }
+
+  previsao(sigla: string){
+
+    this.service.getArquivo(sigla);
   }
 
 

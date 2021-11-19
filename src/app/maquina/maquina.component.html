@@ -34,7 +34,7 @@
                 Atualizar
               </button>
 
-              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + m.sigla">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="previsao(m.sigla)">
                 Previsões de quebra
               </button>
 
