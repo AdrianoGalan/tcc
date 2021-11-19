@@ -51,5 +51,6 @@ export class FuncionarioComponent implements OnInit {
     this.bsModalRef.content.type = 'danger';
     this.bsModalRef.content.message = 'Erro ao carregar';
   }
+  
 
 }

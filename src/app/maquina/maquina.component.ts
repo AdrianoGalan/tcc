@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaquinaService } from './maquina.service';
 import { Maquina } from '../model/maquina';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-maquina',
@@ -16,13 +17,16 @@ export class MaquinaComponent implements OnInit {
 
   bsModalRef!: BsModalRef;
   maquina$!: Observable<Maquina[]>;
+  permissao: number = 0;
 
   constructor(
     private service: MaquinaService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.permissao = this.authService.usuario.permissao;
 
     this.maquina$ = this.service.list().pipe(
       catchError(error => {
