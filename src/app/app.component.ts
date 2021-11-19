@@ -1,3 +1,5 @@
+import { Usuario } from './model/usuario';
+import { Funcionario } from './model/funcionario';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './login/auth.service';
 
@@ -11,6 +13,7 @@ export class AppComponent implements OnInit {
 
   //teste mudar para false
   mostrarMenu: boolean = false;
+  usuario!: Usuario;
 
   constructor(private authService: AuthService){
 
@@ -24,6 +27,12 @@ export class AppComponent implements OnInit {
       mostrar => this.mostrarMenu = mostrar
 
     );
+
+    this.authService.mostrarUsuario.subscribe(
+
+
+      u => this.usuario = u
+    )
 
   }
 

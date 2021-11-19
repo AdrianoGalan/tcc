@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
 
       this.usuario.senha = this.formulario.value['senha'];
       this.usuario.login = this.formulario.value['usuario']
+      
       this.authService.fazerLogin(this.usuario);
 
     }

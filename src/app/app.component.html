@@ -2,7 +2,8 @@
   <nav *ngIf="mostrarMenu" class="navbar navbar-expand-lg navbar-light"
     style="padding: 20px; background-color: #e3ece2;">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="login" (click)="onLogoff()"><i class="bi bi-x-circle color: cornflowerblue;"></i> </a>
+      <a class="navbar-brand" routerLink="login" (click)="onLogoff()"><i
+          class="bi bi-x-circle color: cornflowerblue;"></i> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,18 +16,21 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="os">OS</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="usuario.permissao > 1">
             <a class="nav-link" routerLink="maquina">MAQUINA</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="usuario.permissao > 2">
             <a class="nav-link" routerLink="funcionario">FUNCIONARIO</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="usuario.permissao > 2">
             <a class="nav-link" routerLink="usuario">USUARIO</a>
           </li>
 
         </ul>
       </div>
+    </div>
+    <div>
+      <span>{{  usuario.funcionario.pessoa.nome }}</span>
     </div>
   </nav>
 </div>
