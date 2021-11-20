@@ -7,6 +7,7 @@ import { MaquinaService } from './maquina.service';
 import { Maquina } from '../model/maquina';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { AuthService } from '../login/auth.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-maquina',
@@ -19,6 +20,8 @@ export class MaquinaComponent implements OnInit {
   bsModalRef!: BsModalRef;
   maquina$!: Observable<Maquina[]>;
   permissao: number = 0;
+
+  queryField = new FormControl();
 
   constructor(
     private service: MaquinaService,
@@ -61,6 +64,19 @@ export class MaquinaComponent implements OnInit {
       }
 
     );
+  }
+
+  buscar(){
+
+    this.maquina$ = this.service.busca(this.queryField.value).pipe(
+      catchError(error => {
+        this.handleError('Erro ao carregar');
+        return empty();
+      }
+
+      )
+    )
+
   }
 
 

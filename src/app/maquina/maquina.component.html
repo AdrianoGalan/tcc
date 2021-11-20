@@ -2,9 +2,10 @@
   <legend>Maquinas</legend><br>
   <nav class="navbar navbar-light bg-light">
     <div class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+      <input class="form-control mr-sm-2" type="search" placeholder="Busca por Sigla" aria-label="Search"
+        [formControl]="queryField" />
 
-      <button class="btn btn-outline-success my-2 my-sm-0">Procurar</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" (click)="buscar()">Procurar</button>
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'cadastrar'" *ngIf="permissao > 2">
         Novo
       </button>
@@ -40,7 +41,7 @@
 
               <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(m)">
                 Remover
-            </button>
+              </button>
             </span>
           </td>
         </tr>

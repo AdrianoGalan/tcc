@@ -16,6 +16,12 @@ export class MaquinaService {
     return this.http.get<Maquina[]>(this.API).pipe(take(1));
   }
 
+  busca(sigla: string){
+
+    return this.http.get<Maquina[]>(`${this.API}/busca/${sigla}`).pipe(take(1));
+
+  }
+
   salvarMaquina(maquina: Maquina) {
     return this.http
       .post(this.API, JSON.stringify(maquina), {
