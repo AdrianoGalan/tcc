@@ -56,7 +56,7 @@ export class OsCadastrarComponent implements OnInit {
       os.maquina = this.formulario.value['maquina'];
       os.problema = this.formulario.value['problema'];
       os.oficina = this.formulario.value['oficina'];
-
+      os.statusOs = 'A';
 
       this.osService.salvarOs(os).subscribe(
 

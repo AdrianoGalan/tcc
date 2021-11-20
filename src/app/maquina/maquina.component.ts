@@ -31,7 +31,7 @@ export class MaquinaComponent implements OnInit {
 
     this.maquina$ = this.service.list().pipe(
       catchError(error => {
-        this.handleError();
+        this.handleError('Erro ao carregar');
         return empty();
       }
 
@@ -44,11 +44,30 @@ export class MaquinaComponent implements OnInit {
     this.service.getArquivo(sigla);
   }
 
+  onDelete(m: Maquina){
+    this.service.delete(m).subscribe(
 
-  handleError(){
+      success => {
+
+        this.handleError('Maquina Deletado');
+        this.ngOnInit();
+
+      },
+      erro => {
+
+        this.handleError('Erro ao Deletar');
+
+
+      }
+
+    );
+  }
+
+
+  handleError(msg: string){
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Erro ao carregar';
+    this.bsModalRef.content.message = msg;
   }
 
 }

@@ -47,6 +47,13 @@ export class FuncionarioService {
 
   }
 
+  delete(f: Funcionario) {
+
+    return this.http.put(`${this.API}/delete/`, JSON.stringify(f), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1))
+
+  }
+
+
 
 }
 

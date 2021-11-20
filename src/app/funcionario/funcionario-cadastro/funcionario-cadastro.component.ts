@@ -99,6 +99,7 @@ export class FuncionarioCadastroComponent implements OnInit {
         this.funcionario.pessoa.nome = this.formulario.value['nome'];
         this.funcionario.funcao = this.formulario.value['funcao'];
         this.funcionario.dataAdm = this.formulario.value['dataAdm'];
+        this.funcionario.status = 'A';
 
         if( this.formulario.value['manutentor']){
           this.funcionario.manutentor = 'Sim'

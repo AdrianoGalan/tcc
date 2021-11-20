@@ -110,6 +110,7 @@ export class MaquinaCadastroComponent implements OnInit {
       this.maquina.dataCompra = this.formulario.value['dataCompra'];
       this.maquina.setor = this.formulario.value['setor'];
       this.maquina.fabricante = this.formulario.value['fabricante'];
+      this.maquina.status = 'A'
 
       this.maquinaService.salvarMaquina(this.maquina).subscribe(
         success => {

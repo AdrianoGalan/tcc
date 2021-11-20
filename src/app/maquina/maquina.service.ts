@@ -34,4 +34,10 @@ export class MaquinaService {
     window.open(`${this.API}/previsao/${sigla}`, "_blank");
 
   }
+
+  delete(m: Maquina) {
+
+    return this.http.put(`${this.API}/delete/`, JSON.stringify(m), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1))
+
+  }
 }

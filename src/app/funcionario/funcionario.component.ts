@@ -33,7 +33,7 @@ export class FuncionarioComponent implements OnInit {
   onRefresh() {
     this.funcionarios$ = this.funcionarioService.list().pipe(
       catchError(error => {
-        this.handleError();
+        this.handleError('Erro ao carregar');
         return empty()
       })
     );
@@ -45,11 +45,30 @@ export class FuncionarioComponent implements OnInit {
     
   }
 
+  onDelete(f: Funcionario){
+    this.funcionarioService.delete(f).subscribe(
 
-  handleError(){
+      success => {
+
+        this.handleError('Funcionario Deletado');
+        this.ngOnInit();
+
+      },
+      erro => {
+
+        this.handleError('Erro ao Deletar');
+
+
+      }
+
+    );
+  }
+
+
+  handleError(msg: string){
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Erro ao carregar';
+    this.bsModalRef.content.message = msg;
   }
   
 
