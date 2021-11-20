@@ -1,3 +1,4 @@
+import { Os } from './../model/os';
 import { Usuario } from './../model/usuario';
 import { take } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,6 +20,12 @@ export class UsuarioService {
 
   list() {
     return this.http.get<Usuario[]>(this.API).pipe(take(1));
+  }
+
+  busca(login: string){
+
+    return this.http.get<Usuario[]>(`${this.API}/busca/${login}`).pipe(take(1));
+
   }
 
   getUsuario(id: number) {

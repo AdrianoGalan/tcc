@@ -16,6 +16,12 @@ export class OsService {
     return this.http.get<Os[]>(this.API).pipe(take(1));
   }
 
+  busca(parametro: string){
+
+    return this.http.get<Os[]>(`${this.API}/busca/${parametro}`).pipe(take(1));
+
+  }
+
   salvarOs(os: Os) {
     return this.http
       .post(this.API, JSON.stringify(os), {

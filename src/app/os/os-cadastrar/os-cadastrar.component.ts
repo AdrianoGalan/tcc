@@ -19,7 +19,7 @@ export class OsCadastrarComponent implements OnInit {
   formulario!: FormGroup;
   maquina$!: Observable<Maquina[]>
   submitted = false;
-  oficina: string[] = ['Calderaria', 'Eletrica', 'Mecanica']
+  oficina: string[] = ["",'Eletrica', 'Mecanica']
 
 
   constructor(

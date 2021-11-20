@@ -23,6 +23,12 @@ export class FuncionarioService {
     return this.http.get<Funcionario[]>(this.API).pipe(take(1));
   }
 
+  busca(parametro: string){
+
+    return this.http.get<Funcionario[]>(`${this.API}/busca/${parametro}`).pipe(take(1));
+
+  }
+
   getFuncionario(matricula: number) {
 
     return this.http.get<Funcionario>(`${this.API}/${matricula}`).pipe(take(1))

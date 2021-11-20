@@ -2,9 +2,10 @@ import { empty, Observable, of } from 'rxjs';
 import { FuncionarioService } from './funcionario.service';
 import { Funcionario } from './../model/funcionario';
 import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class FuncionarioComponent implements OnInit {
 
   funcionarios$!: Observable<Funcionario[]>;
   bsModalRef!: BsModalRef;
+  queryField = new FormControl();
 
   constructor(
     private funcionarioService: FuncionarioService,
@@ -27,6 +29,29 @@ export class FuncionarioComponent implements OnInit {
 
     this.onRefresh();
 
+    this.queryField.valueChanges
+      .pipe(
+        map((value) => value.trim()),
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap((value) => this.consulta(value))
+      )
+      .subscribe();
+
+  }
+
+  consulta(value: string) {
+    if (value.length > 0) {
+      this.funcionarios$ = this.funcionarioService.busca(value).pipe(
+        catchError((error) => {
+          this.handleError("Erro ao carregar");
+          return empty();
+        })
+      );
+    } else {
+      
+      this.onRefresh();
+    }
   }
 
 
@@ -71,5 +96,15 @@ export class FuncionarioComponent implements OnInit {
     this.bsModalRef.content.message = msg;
   }
   
+  buscar(){
+    if (this.queryField.value?.length > 1) {
+      this.funcionarios$= this.funcionarioService.busca(this.queryField.value).pipe(
+        catchError((error) => {
+          this.handleError("Erro ao carregar");
+          return empty();
+        })
+      );
+    }
+  }
 
 }
