@@ -34,6 +34,12 @@ export class UsuarioService {
 
   }
 
+  getUsuarioLogin(login: string){
+
+    return this.http.get<Usuario>(`${this.API}/${login}`, { headers: new HttpHeaders().set('Content-Type', 'application/json')}).pipe(take(1))
+
+  }
+
 
   deleteUsuario(u: Usuario) {
 
